@@ -1,21 +1,23 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> li=new ArrayList<>();
-        String str="";
-        int o=0,c=0;
-        solve(li,str,o,c,n);
-        return li;
+       List<String> perm = new ArrayList<>();
+        char [] temp = new char[n*2];
+        generateParenthesis(n, n, temp, 0, perm);
+        return perm;
     }
-    public void solve(List li,String str,int o,int c,int n)
-    {
-        if(o==n&&c==n)
-        {
-            li.add(str);
-            return;
+    public void generateParenthesis(int leftrem, int rightrem, char[] temp, int pos, List<String> perm) {
+        if(leftrem<0 || rightrem<0 || leftrem>rightrem) return;
+
+        if(leftrem==0 && rightrem==0 ) {
+            perm.add(String.copyValueOf(temp));
         }
-        if(o<n)
-          solve(li,str+"(",o+1,c,n);
-        if(o>c)
-          solve(li,str+")",o,c+1,n);
+    if(leftrem>0) {
+            temp[pos] ='(';
+            generateParenthesis(leftrem-1, rightrem, temp, pos+1, perm);
+        }
+        if(rightrem> leftrem) {
+            temp[pos] = ')';
+            generateParenthesis(leftrem, rightrem-1, temp, pos+1, perm);
+        }
     }
 }
