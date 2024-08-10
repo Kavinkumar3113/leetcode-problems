@@ -1,11 +1,13 @@
 class Solution {
     public int addDigits(int num) {
-        if(num<10)
-            return num;
-
-        if(num%9==0)
-            return 9;
-        
-        return  num%9;
+        int t=0;
+        while(num!=0)
+        {
+           t+=num%10;
+           num/=10;
+        }
+        if(t>9)
+          return addDigits(t);
+        return t;
     }
 }
