@@ -1,28 +1,23 @@
 class Solution {
-    private int getSquareSum(int n)
+    public int sqt(int n)
     {
-        int currSum = 0;
-        while(n != 0)
+        int t=0,m=0;
+        while(n!=0)
         {
-            int remainder = (n % 10);
-            currSum += remainder * remainder;
-            n /= 10;
+         m=n%10;
+         t+=m*m;
+         n/=10;
         }
-        return currSum;
-
+        return t;
     }
-
     public boolean isHappy(int n) {
-        int slow = getSquareSum(n);
-        int fast = getSquareSum(getSquareSum(n));
-
-     //Fast and slow pointer approach
-        while((slow != fast) && (fast != 1))
-        {
-            slow = getSquareSum(slow);
-            fast = getSquareSum(getSquareSum(fast));
-        }
-
-        return fast == 1;
+          int s=sqt(n),f=sqt(sqt(n));
+          
+          while(s!=f&&f!=1)
+          {
+            s=sqt(s);
+            f=sqt(sqt(f));
+          }
+          return f==1;
     }
 }
