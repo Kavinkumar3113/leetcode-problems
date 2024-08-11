@@ -11,7 +11,7 @@ class Solution {
                     {
 
                    
-                  
+                       System.gc();
                         array[0]=j-i;
                         array[1]=j;
                         break hes;
